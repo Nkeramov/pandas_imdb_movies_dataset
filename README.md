@@ -1,3 +1,7 @@
+# Pandas IMDB movies dataset analysis
+
+## Description
+
 This project presents an example of data analysis using pandas.
 
 As a data source, used a dataset from IMDB.com containing information about 

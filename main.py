@@ -2,14 +2,19 @@ import math
 import itertools
 import pandas as pd
 
+pd.set_option('display.width', 800)
 pd.set_option("display.precision", 2)
-pd.set_option('max_columns', None)
+pd.set_option('display.max_columns', None)
 
 
 if __name__ == '__main__':
     df = pd.read_csv('movies_bd_v5.csv', sep=',', encoding='utf-8')
     print(f"Dataset contains {df.shape[0]} rows and {df.shape[1]} columns")
     print(f"Dataset columns: {', '.join(df.columns.tolist())}")
+    print('Dataset column types:')
+    print(df.dtypes)
+    print('Dataset NAN-values distribution:')
+    print(df.isnull().sum())
     df['profit'] = df['revenue'] - df['budget']
     df['release_date'] = pd.to_datetime(df['release_date'], format="%m/%d/%Y")
     df['month'] = df['release_date'].dt.strftime("%B")
@@ -79,6 +84,6 @@ if __name__ == '__main__':
     most_frequent_actor_pairs = actor_pairs.value_counts()[actor_pairs.value_counts() ==
                                                            actor_pairs.value_counts().max()]
     ans[27] = most_frequent_actor_pairs.rename_axis('actor_pair').reset_index(name='count').to_dict('records')
-    print("Answers:")
-    for i in ans.keys():
-        print(f"\t{i} {ans[i]}")
+    print("\nAnswers on questions:")
+    for i, answer in ans.items():
+        print(f"\t{i})\t{answer}")
